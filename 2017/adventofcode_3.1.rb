@@ -1,8 +1,6 @@
 #1 is layer (l) = 0
 #Bottom right corner (c) is: c = (uneven number)^2
 #Max distance (d) is within: 2*l >= d >= 2*(l-1)
-#Amount of numbers (nbs) on a given layer: nbs = 8*l
-# (c-1)^2 + 1 <= nb <= c^2
 arg = ARGV
 num = arg[0].to_i
 
