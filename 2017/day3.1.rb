@@ -56,8 +56,4 @@ def distance_from_closest_corner(value)
   end
 end
 
-def manhattan_distance(value)
-  return max_dist = 2 * find_layer(value)[0] - distance_from_closest_corner(value)
-end
-
-puts manhattan_distance(num)
+puts 2 * find_layer(num)[0] - distance_from_closest_corner(num)
