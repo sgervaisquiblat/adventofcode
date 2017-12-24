@@ -5,7 +5,7 @@ arg = ARGV
 num = arg[0].to_i
 
 def find_layer(value)
-  if(value == 1)
+  if value == 1
     return [0, 1, 1]
   else
     layer = 1
@@ -23,36 +23,35 @@ def find_layer(value)
 end
 
 def find_layer_corners(layer_info)
-  side = Math.sqrt(layer_info[2])
-  c1 = layer_info[1]+(side-2)
-  c2 = c1 + (side - 1)
-  c3 = c2 + (side -1)
-  c4 = layer_info[2]
-  return [c1, c2, c3, c4]
+  side_length = Math.sqrt(layer_info[2])
+  corner1 = layer_info[1]+(side_length-2)
+  corner2 = corner1 + (side_length - 1)
+  corner3 = corner2 + (side_length -1)
+  corner4 = layer_info[2]
+  return [corner1, corner2, corner3, corner4]
 end
 
 def distance_from_closest_corner(value)
   info = find_layer(value)
   corners = find_layer_corners(info)
-  d = nil
-  side = Math.sqrt(info[2])
-  if value == 1
-    return 0
+  side_length = Math.sqrt(info[2])
+  distance_from_corner = if value == 1
+    0
   elsif value == info[1]
-    return 1
+    1
   elsif value > info[1] && value <= corners[0]
-    d = corners[0] - value
+    corners[0] - value
   elsif value > corners[0] && value <= corners[1]
-    d = corners[1] - value
+    corners[1] - value
   elsif value > corners[1] && value <= corners[2]
-    d = corners[2] - value
+    corners[2] - value
   else
-    d = corners[3] - value
+    corners[3] - value
   end
-  if (side - d) < (side/2)
-    return d - (side/2).floor
+  if (side_length - distance_from_corner) < (side_length/2)
+    return distance_from_corner - (side_length/2).floor
   else
-    return d
+    return distance_from_corner
   end
 end
 
